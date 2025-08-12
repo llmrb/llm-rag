@@ -6,7 +6,7 @@ is only 27-lines of Ruby code 🫡
 
 ## Context
 
-For storage and retrieval, we’ll use [OpenAI’s Vector Stores API]()
+For storage and retrieval, we’ll use [OpenAI’s Vector Stores API](https://platform.openai.com/docs/api-reference/vector-stores)
 as our vector database. If "RAG" or “vector database” are new terms
 for you, don’t worry &ndash; we’ll cover them both briefly before
 diving into the example. Our "knowledge base" or primary content
