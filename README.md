@@ -1,36 +1,28 @@
-## Retrieval-Augmented Generation (RAG) with llm.rb
+## About
 
-This post introduces **Retrieval-Augmented Generation (RAG)**
-using the [llm.rb](https://github.com/llmrb/llm) library.
+This repository introduces **Retrieval-Augmented Generation (RAG)**
+using the [llm.rb](https://github.com/llmrb/llm) library. <br> The example
+is only 27-lines of Ruby code 🫡
+
+## Context
 
 For storage and retrieval, we’ll use [OpenAI’s Vector Stores API]()
 as our vector database. If "RAG" or “vector database” are new terms
 for you, don’t worry &ndash; we’ll cover them both briefly before
-diving into the examples.
-
-Our "knowledge base" or primary content will be composed of
-the files found in the
+diving into the example. Our "knowledge base" or primary content
+will be composed of the files found in the
 [documents/](documents/)
 directory, and it contains the FreeBSD handbook &ndash;
 with one file per chapter.
 
-There's nothing else specific to FreeBSD, and the content could
-be anything &ndash; a company’s internal documentation, a set of
-research papers, or any other text-based knowledge source.
-
----
 
 ## Background
 
 ### What is RAG?
 
-**RAG** is a technique whereby a language model is given
+RAG is a technique whereby a language model is given
 extra context &ndash; retrieved from an external knowledge
 source &ndash; before generating a response.
-
-Why this matters:
-- A language model might not know about private or proprietary documentation.
-- It might have outdated or incorrect information.
 
 With RAG, you supply your own knowledge base at query time.
 The LLM then generates responses **based entirely (or primarily)
@@ -42,11 +34,9 @@ API docs into a RAG system. Queries about those APIs would return
 accurate, up-to-date answers, even if the model was trained long
 before those APIs existed.
 
----
-
 ### What is a vector database?
 
-A **vector database** is a common choice for storing and retrieving
+A vector database is a common choice for storing and retrieving
 the context used in RAG. We will be dealing with a text-based vector
 database but it is worth knowing that vector databases can also
 handle images, audio, and other types of data.
@@ -60,15 +50,28 @@ Here’s the basic idea:
 - **Results**: The most relevant chunks are returned and injected
                into the LLM’s prompt.
 
-In RAG, these retrieved chunks form the **knowledge base** for that
+In RAG, these retrieved chunks form the knowledge base for that
 particular prompt. The LLM can then use them to answer questions,
 summarize, or otherwise respond with grounding in specific,
 relevant information.
 
 ## Example
 
-### Introduction
+### Explanation
 
+The following example adds the contents of the [docments/](documents/)
+directory by uploading them as files via OpenAI's Files API. The next
+step is to create a vector store, and the vector store will be composed
+of the files that we just uploaded.
+
+After the vector store is created, and it is ready, we can search the
+vector store with a query. The query will produce one or more chunks of
+text, and those chunks will be provided to the [system prompt](prompts/system.erb.txt).
+
+Finally, the bot will generate a response based on the system prompt
+and the user’s question. This is done in an infinite loop, so you can
+ask as many questions as you like, and the bot will respond with
+answers based on the context provided by the vector store.
 
 ```ruby
 require "llm"
