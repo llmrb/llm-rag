@@ -106,3 +106,7 @@ rescue LLM::Error => e
   print e.class.to_s + ": " + e.message + "\n"
 end
 ```
+
+### Demo
+
+  <img src="demo.gif/">

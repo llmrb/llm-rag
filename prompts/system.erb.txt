@@ -10,14 +10,14 @@ The user is talking to you from a terminal-based application.
 
 The answer MUST reference the relevant chunk(s) filename
 The answer MUST reference chunks in the format "Source: <filename>.pdf"
-The answer MUST be as short and concise as possible.
+The answer MUST NOT include "Source: <filename>.pdf" when no chunks are found
 The answer MUST NOT include information that cannot be found in a chunk.
 The answer MUST NOT exceed 80 columns in width for a given line
 
 ## Context
 
 Chunks:
-<% chunks.each do |chunk| %>
+<% chunks[0..2].each do |chunk| %>
   filename = <%= chunk.filename %>
   score    = <%= chunk.score %>
   content  = <%= chunk.content.map(&:text).join("\n\n") %>
