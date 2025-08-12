@@ -2,7 +2,7 @@
 
 This repository introduces **Retrieval-Augmented Generation (RAG)**
 using the [llm.rb](https://github.com/llmrb/llm) library. <br> The example
-is only 27-lines of Ruby code 🫡
+is only 32-lines of Ruby code 🫡
 
 ## Context
 
@@ -22,11 +22,10 @@ with one file per chapter.
 
 RAG is a technique whereby a language model is given
 extra context &ndash; retrieved from an external knowledge
-source &ndash; before generating a response.
-
-With RAG, you supply your own knowledge base at query time.
-The LLM then generates responses **based entirely (or primarily)
-on that provided context**, ensuring the answers are grounded in your
+source &ndash; before generating a response. With RAG, you
+supply your own knowledge base at query time. The LLM then
+generates responses **based entirely (or primarily) on that
+provided context**, ensuring the answers are grounded in your
 chosen source of truth.
 
 For example, an engineering team could load the company’s internal
